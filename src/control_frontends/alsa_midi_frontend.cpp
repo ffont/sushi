@@ -188,6 +188,8 @@ void AlsaMidiFrontend::_poll_function()
                 if ((ev->type == SND_SEQ_EVENT_NOTEON)
                     || (ev->type == SND_SEQ_EVENT_NOTEOFF)
                     || (ev->type == SND_SEQ_EVENT_CONTROLLER)
+                    || (ev->type == SND_SEQ_EVENT_CHANPRESS)
+                    || (ev->type == SND_SEQ_EVENT_KEYPRESS)
                     || (ev->type == SND_SEQ_EVENT_PGMCHANGE)
                     || (ev->type == SND_SEQ_EVENT_PITCHBEND))
                 {
