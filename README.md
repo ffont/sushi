@@ -1,3 +1,23 @@
+# AFTER-SUSHI
+
+This repository contains a customized version of [ELK Audio's `sushi`](https://github.com/elk-audio/sushi) (v0.10.3) which adds support for channel pressure and polyphonic aftertouch MIDI messages (which are currently being filtered out because of a bug in the official release).  I tested it with ELK Pi and cross-compile it from a macOS which success. 
+
+In this fork I include scripts to facilitate Docker-based cross-compilation from a mac (and generaly from any OS if using the Dockerized sdk). Here are the instructions to cross compile:
+
+- **Prepare ELK development SDK**: The first thing to do is to prepare the ELK development SDK Docker image following the [instrucitons here](https://github.com/elk-audio/elkpi-sdk/blob/master/running_docker_container_on_macos.md). You need to run steps 1 to 3, no need to run the toolchain when everything installed.
+
+
+- **Preparing some code dependencies**: In the compilation scripts `sushi` is configured to be built with VST2 supper, meaning that you need the VST2 SDK installed in your computer. The script used to cross-compile `sushi` will try to mount the VST2 SDK in the Docker container so it can be used for compilation. The script will search for a folder named `VST_SDK` (the SDK) at the same directory level where the `sushi` folder is (if needed, you can edit this in `fabfile.py`). You should find a copy of the VST2 SDK and place it in the corresponding directory.
+
+
+- **Do the cross-compilation**: With all this in place, you should be able to cross-compile `sushi` by simply running `fab compile-elk`
+
+*NOTE*: in the compilation scripts `sushi` is [configured](https://github.com/ffont/sushi/blob/31730e3a5478ca712527bbf384de501eb665ffdc/custom-esdk-launch.py#L123) with a number of CMAKE options turned off. Make sure that none of this is needed for yout build.
+
+What follows is the original readme file for SUSHI:
+
+
+
 # SUSHI
 Headless plugin host for ELK Audio OS.
 
